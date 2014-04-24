@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="webapp.appcache">
+<head>
+    <title>Diseases of Early Season Cotton</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="UofA Extension Plant Pathology presents: Differentiating Diseases of Early Season Cotton - Pima and upland ( Gossypium barbadense; G. hirsutum ) in Arizona"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/><!-- target-densitydpi=device-dpi -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="CottonDiseases" />
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32px.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48px.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64px.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="favicon-128px.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="favicon-256px.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="favicon-32px.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="48x48" href="favicon-48px.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="128x128" href="favicon-128px.ico" />
+
+    <!--<link rel="apple-touch-icon-precomposed" href="img/CALS_app_icon.png"/>-->
+    <link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone-retina.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="touch-icon-ipad-retina.png" />
+    <link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image.png" />
+    <!--<link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image-retina.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" />-->
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/PlantApp.min.css" />
+    <!--<link rel="stylesheet" type="text/css" href="css/ua-web-branding.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" media="screen" />-->
+    <!--<link rel="stylesheet" type="text/css" href="css/main.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/cals-cottonapp-production.css" />
+
+	<script src="lib/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/bookmark_bubble.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        // google bookmark bubble 
+        page_popup_bubble = "#home";
+
+        /** Don't show the bubble if click dismiss button at 3 times. */
+        google.bookmarkbubble.Bubble.prototype.NUMBER_OF_TIMES_TO_DISMISS = 3;
+        /** page to bookmark bubble (generally, this should be top page) */
+        if (typeof (page_popup_bubble) == "undefined") {
+            page_popup_bubble = "#home";
+        }
+
+        /** bookmark bubble initialized in mobileinit event for jquery mobile, see below */
+        
+        /*
+            When jQuery Mobile starts, it triggers a mobileinit event on the document object. 
+            To override default settings, bind to mobileinit. Because the mobileinit event is triggered immediately, 
+            you'll need to bind your event handler before jQuery Mobile is loaded.
+        */
+        $(document).on('mobileinit', function () {
+            $.mobile.loader.prototype.options.text = "loading";
+            $.mobile.loader.prototype.options.textVisible = true;
+            $.mobile.loader.prototype.options.textonly = false;
+            $.mobile.loader.prototype.options.theme = "a";
+            $.mobile.loader.prototype.options.html = "";
+            //$.mobile.loadPage(diseases.html, { showLoadMsg: false });
+            if (navigator.userAgent.indexOf("Android") != -1) {
+               // $.mobile.defaultPageTransition = "none";
+               // $.mobile.defaultDialogTransition = "none";
+            }
+
+            $(document).on('pageinit', page_popup_bubble, function () {
+                //console.log('called pageinit for ' + page_popup_bubble);
+                window.setTimeout(function () {
+                    var bubble = new google.bookmarkbubble.Bubble();
+
+                    var parameter = page_popup_bubble;
+
+                    bubble.hasHashParameter = function () {
+                        return location.hash == "" && location.href.indexOf(parameter) == location.href.length - 1;
+                        //return false;
+                    };
+
+                    bubble.setHashParameter = function () {
+                        if (!this.hasHashParameter()) {
+                            location.href = parameter;
+                        }
+                    };
+
+                    bubble.getViewportHeight = function () {
+                        window.console.log('Example of how to override getViewportHeight.');
+                        return window.innerHeight;
+                    };
+
+                    bubble.getViewportScrollY = function () {
+                        window.console.log('Example of how to override getViewportScrollY.');
+                        return window.pageYOffset;
+                    };
+
+                    bubble.registerScrollHandler = function (handler) {
+                        window.console.log('Example of how to override registerScrollHandler.');
+                        window.addEventListener('scroll', handler, false);
+                    };
+
+                    bubble.deregisterScrollHandler = function (handler) {
+                        window.console.log('Example of how to override deregisterScrollHandler.');
+                        window.removeEventListener('scroll', handler, false);
+                    };
+
+                    bubble.showIfAllowed();
+                }, 1000 /** delay to show the bubble */);
+            });
+
+        });
+    </script>
+    <!--<script src="lib/jquery-migrate-1.1.0.min.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="lib/jquery.mobile-1.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/cals.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+       
+       
+        $(document).ready(function () {
+            $('.copyrightyear').text(new Date().getFullYear());
+        });
+
+        function alertCameraNotAvailable() {
+            var text = 'Sorry, this action is only available if you download our App - available soon in the iTunes App Store for Apple iOS devices and Google Play Store for Android devices. \n\nAlternatively you can take a photo and attach it manually it to the email you send us from the Contact Us page.';
+            alert(text);
+        }
+
+        $(window).load(function () {
+            //alert("page loaded");
+            $.mobile.changePage($("#home"), "pop", true, true);
+        });
+     </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+        _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+        _gaq.push(['_setAccount', 'UA-38175812-2']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+    <!-- LOADING PAGE -->
+    <div data-role="page" id="loading" data-theme="b" data-title="LOADING - Diseases of Early Season Cotton">
+        <script>
+            window.dotsGoingUp = true;
+            var dots = window.setInterval(function () {
+                var wait = document.getElementById("wait");
+                if (window.dotsGoingUp)
+                    wait.innerHTML += ".";
+                else {
+                    wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
+                    if (wait.innerHTML === "")
+                        window.dotsGoingUp = true;
+                }
+                if (wait.innerHTML.length > 2)
+                    window.dotsGoingUp = false;
+            }, 400);
+    </script>
+    <style>
+        img.startup { width: 100%; max-width:320px; max-height: 460px;}/*max-width:720px; max-height: 960px;*/
+        #floating { position: absolute;top: 1em;width: 100%;text-align:center;margin-top:5px; }
+        #loadingtext { width: 190px; margin: 0 auto;text-align:left;color: #ffffff;font-size: 2em;font-family: Verdana, Geneva, sans-serif;text-shadow: 2px 2px 2px #002147;}
+        /*
+        @media screen and (min-width: 280px) {
+            #loadingtext {padding-left: 60px;}
+        }
+        @media screen and (min-width: 320px) {
+            #loadingtext {padding-left: 80px;}
+        }
+        @media screen and (min-width: 420px) {
+            #loadingtext {padding-left: 80px;font-size: 3em;}
+        }
+        @media screen and (min-width: 500px) {
+            #loadingtext {padding-left: 80px;font-size: 4em;}
+        }
+        @media screen and (min-width: 700px) {
+            #loadingtext {padding-left: 0;font-size: 5em;}
+        }
+        */
+    </style>
+        <div  data-role="header"></div> 
+	    <div data-role="content">
+            <div style="text-align:center;margin: 0;font-family: Verdana, Geneva, sans-serif;">
+                <div id="floating">
+                    <div id="loadingtext">
+                        Loading<span id="wait"></span>
+                    </div>
+                </div>
+                <img class="startup" src="img/cottondisesases-startup-image.jpg" alt="" />
+                <br /><br />
+                        If you are not automatically redirected, <a href="#home" title="Continue to the App">continue to the main page &raquo;</a>
+                <br />
+                <br />
+        
+            </div>
+	    </div> 
+	    <div  data-role="footer"></div> 
+    </div>
+    <!-- /LOADING PAGE -->
+
+    <!-- HOME page -->
+    <div data-role="page" id="home" data-theme="b" data-title="Diseases of Early Season Cotton">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+
+		    <h1 class="ui-title">
+                Cotton Diseases
+		    </h1>
+        
+            <!--<a href="index.aspx" data-icon="home" data-iconpos="notext" data-transition="flip" data-direction="reverse" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home"></a>-->
+            
+            <img src="img/ua-blocka_32x2.png" alt="" class="header-blocka" width="42" height="32" />
+            
+
+            <!--<a href="#optionspanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right" onclick="return getHeightForOptionsPanel('#optionspanel')">Options</a>-->
+            <!--<a href="#optionspanel" data-rel="panel" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right">Options</a>-->
+
+            
+            <div data-role="navbar">
+	            <ul>
+		            <li><a href="#photos" data-transition="slide">Photos</a></li>
+		            <li><a href="#list" data-transition="slidedown">List</a></li>
+                    <li><a href="#determine" data-transition="slide">Identifier</a></li>
+	            </ul>
+            </div><!-- /navbar -->
+            
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="ui-content">
+		    <div class="content-primary center">
+                <div class="pagetitle">
+                    Differentiating Diseases of Early Season Cotton
+                    <div>
+                        Pima and upland ( <span class="italic">Gossypium barbadense; G. hirsutum</span> ) in Arizona
+                    </div>
+                
+                </div>
+                <br />
+                <div>
+                    You may find the diseases in a couple different ways:
+                    <ul data-role="listview" data-inset="true" class="maxbtnwidth">
+                        <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right"><a href="#photos">Look at Photos</a></li>
+                        <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right"><a href="#list">Browse a List</a></li>
+                        <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right"><a href="#determine">Disease Identifier Guide</a></li>
+                    </ul>
+                 
+                </div>
+                <br />
+            
+		    </div>
+            <div class="content-secondary center">
+                <div class="content-contrain">
+                    If you've found something that you'd like to share with us, for questions or feedback, you may take a photo with your smartphone and then send it to us.
+                    <br />
+                    <a href="#" onclick="alertCameraNotAvailable()" data-role="button" class="maxbtnwidth">Take a picture</a>
+
+                </div>
+                <br />
+                <div>
+                    If you don't find the information you are looking for, please <a href="#contact" data-transition="pop" data-role="button" class="maxbtnwidth">Contact Us</a>
+                </div>
+                <p><br /></p>
+            </div>	
+	    </div><!-- /content -->
+
+	    <div data-role="footer" data-id="footer" data-position="fixed" data-visible-on-page-show="false" data-tap-toggle="false" data-theme="b"> 
+            <div data-role="navbar" data-iconpos="top">
+		        <ul>
+			        <li><a href="#home" data-icon="back" data-rel="back">Back</a></li>
+			        <li><a href="#popupNested" data-icon="grid" data-rel="popup" data-role="button" data-inline="true">Menu</a></li><!--data-position-to="window"--><!-- onclick="openPopup('#popupNested')"-->
+			        <li><a href="#contact" data-icon="edit" data-transition="pop">Contact</a></li>
+		        </ul>
+	        </div><!-- /navbar -->
+            <div class="footerlinks">
+                <!--
+                This App and all content is courtesy of 
+                <a href="http://ag.arizona.edu/pls" class="ui-link">School of Plant Sciences </a>, 
+                <a href="http://ag.arizona.edu/PLP/plphome.html">Division of Plant Pathology and Microbiology</a>, 
+                <a href="http://ag.arizona.edu/">College of Agriculture and Life Sciences</a>, <a href="http://www.arizona.edu/"> The University of Arizona </a>
+                -->
+                This App is funded by the <a href="http://www.arizonacrop.org/" title="Arizona Crop Improvement Association" rel="external" target="_blank" class="nowrap">Arizona Crop Improvement Association</a>
+                 and <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank" class="nowrap">University of Arizona Cooperative Extension</a>
+                <br />UA Extension responsible for all content
+                <br />
+                &copy <span class="copyrightyear">2013</span> Arizona Board of Regents
+            </div>
+	        
+            <div class="ua-web-branding-banner-v1 ua-wrapper bgDark blue-grad">
+                <a class="ua-home asdf" href="http://arizona.edu" title="The University of Arizona" rel="external" target="_blank">
+                    <p>The University of Arizona</p>
+                </a>
+                <a class="calslogo" href="http://cals.arizona.edu/" title="College of Agriculture and Life Sciences" rel="external" target="_blank">
+                    <p>College of Agriculture and Life Sciences</p>
+                </a>
+            </div>
+        </div><!-- /footer -->
+
+    
+        
+        <!--<div data-role="panel" id="optionspanel" data-id="optionspanel" data-panel="optionspanel" data-position="right" data-display="overlay" class="panel-content">-->
+        <!--<div data-role="popup" id="optionspanel" class="optionspanel" data-id="optionspanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+		    <h3>Options</h3>
+            To close, click off the panel, hit the Esc key, or use the button below:
+            
+            <a href="#optionspanel" data-rel="close" data-role="button" data-icon="back" data-mini="true">Close panel</a>
+	    </div>--><!-- /popup -->
+
+         <div data-role="popup" id="popupNested" data-id="popupNested" data-theme="none" data-tolerance="30,15,175,15">
+		    <div data-role="collapsible-set" data-theme="c" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Navigate Pages</h2>
+				    <ul data-role="listview">
+					    <li><a href="#home" data-transition="flip" data-direction="reverse">Home Page</a></li>
+					    <li><a href="#photos" data-transition="slide">Browse Photos</a></li>
+					    <li><a href="#list" data-transition="slide">Browse List</a></li>
+                        <li><a href="#determine" data-transition="slide">Disease Identifier Guide</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Interact</h2>
+				    <ul data-role="listview">
+					    <!--<li><a href="#" data-rel="popup">Find My Location</a></li>-->
+                        <li><a href="#" onclick="alertCameraNotAvailable()" data-rel="popup">Take a Photo</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Contact</h2>
+				    <ul data-role="listview">
+					    <li><a href="#contact" data-transition="pop">Contact U of A</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <!--<div data-role="collapsible" data-inset="false">
+				    <h2>Settings</h2>
+				    <ul data-role="listview">
+					    <li><a href="#optionspanel" data-rel="popup" data-transition="slide" data-position-to="window" onclick="return getHeightForOptionsPanel('#optionspanel')">Options</a></li>
+				    </ul>
+			    </div>--><!-- /collapsible -->
+		    </div><!-- /collapsible set -->
+	    </div><!-- /popup -->
+        
+    
+    </div><!-- /page : home -->
+
+
+
+   
+        
+    
+
+    <!-- PHOTOS -->
+     <div data-role="page" id="photos" data-theme="b" data-title="Photos - Diseases of Early Season Cotton">
+         
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Cotton Diseases
+		    </h1>
+        
+            
+            <a href="#home" data-icon="home" data-iconpos="notext" data-transition="flip" data-direction="reverse" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home"></a>
+           
+            
+            <!--<a href="#optionspanel1" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right" onclick="return getHeightForOptionsPanel('#optionspanel1')">Options</a>-->
+
+            
+            <div data-role="navbar">
+	            <ul>
+		            <li><a href="#photos" class="ui-btn-active ui-state-persist">Photos</a></li>
+		            <li><a href="#list" data-transition="slidedown">List</a></li>
+                    <li><a href="#determine" data-transition="slide">Identifier</a></li>
+	            </ul>
+            </div><!-- /navbar -->
+            
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="ui-content center">
+		    <div class="content-primary">
+                <div class="pagetitle">
+                    Photos of Early Season Cotton Diseases
+                    <div>
+                        Pima and upland ( <span class="italic">Gossypium barbadense; G. hirsutum</span> ) in Arizona
+                    </div>
+                </div>
+                <br />
+		    </div>
+            <div class="content-secondary">
+                <ul id="gallery" class="gallery">
+	                <!--<li><a href="img/FusariumOxysporumRace4.jpg" data-rel="popup" data-position-to="window" aria-haspopup="true" aria-owns="popup-FusariumOxysporumRace4"><img src="img/FusariumOxysporumRace4_square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>-->
+                    <li><a href="img/rhizoctonia-brown-root-rot_468x362.jpg" rel="prettyPhoto[gallery2]" data-detail="#rhizoctonia-solani" title="A soil borne fungus found throughout all cotton growing areas"><img src="img/rhizoctonia-brown-root-rot_234square.jpg" alt="Rhizoctonia solani" /></a></li>
+                    <li><a href="img/thielaviopsis-basicola-root-rot_468x579.jpg" rel="prettyPhoto[gallery2]" data-detail="#thielaviopsis-basicola" title="A soil borne fungus that is easily found in soils throughout the state but causes disease only when soils are relatively cold and wet"><img src="img/thielaviopsis-basicola-root-rot_234square.jpg" alt="Thielaviopsis basicola" /></a></li>
+                    <li><a href="img/verticillium-wilt-stunted-leaf_468x468.jpg" rel="prettyPhoto[gallery2]" data-detail="#verticillium-dahliae" title="A soil borne fungus that enters the roots and grows into the vascular system of the plant"><img src="img/verticillium-wilt-stunted-leaf_234square.jpg" alt="Verticillium dahliae" /></a></li>
+                    <li><a href="img/verticillium-leaf_468x379.jpg" rel="prettyPhoto[gallery2]" data-detail="#verticillium-dahliae" title="A soil borne fungus that enters the roots and grows into the vascular system of the plant"><img src="img/verticillium-leaf_234_square.jpg" alt="Verticillium dahliae" /></a></li>
+                    <li><a href="img/verticillium-wilt-xylem-discoloration_468x374.jpg" rel="prettyPhoto[gallery2]" data-detail="#verticillium-dahliae" title="A soil borne fungus that enters the roots and grows into the vascular system of the plant"><img src="img/verticillium-wilt-xylem-discoloration_234square.jpg" alt="Verticillium dahliae" /></a></li>
+                    <li><a href="img/verticillium-of-young-cotton_468x378.jpg" rel="prettyPhoto[gallery2]" data-detail="#verticillium-dahliae" title="A soil borne fungus that enters the roots and grows into the vascular system of the plant"><img src="img/verticillium-of-young-cotton_234square.jpg" alt="Verticillium dahliae" /></a></li>
+
+                    <li><a href="img/FOV4-wilted-plant-courtesy-UC-Davis_468x351.jpg" rel="prettyPhoto[gallery2]" data-detail="#fusarium-oxysporum" title="A soil inhabiting fungus that causes a vascular wilt disease (photo courtesy UC Davis)"><img src="img/FOV4-wilted-plant-courtesy-UC-Davis_234_square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>
+                    <li><a href="img/FOV4-leaf-symptoms-courtesy-UC-Davis_468x351.jpg" rel="prettyPhoto[gallery2]" data-detail="#fusarium-oxysporum" title="A soil inhabiting fungus that causes a vascular wilt disease (photo courtesy UC Davis)"><img src="img/FOV4-leaf-symptoms-courtesy-UC-Davis_234square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>
+                    <li><a href="img/FOV4-vas-discolor-courtesy-UC-Davis_468x468.jpg" rel="prettyPhoto[gallery2]" data-detail="#fusarium-oxysporum" title="A soil inhabiting fungus that causes a vascular wilt disease (photo courtesy UC Davis)"><img src="img/FOV4-vas-discolor-courtesy-UC-Davis_234square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>
+                    
+                    <li><a href="img/FOV4-lower-leaves-yellow-courtesy-UC-Davis_468x354.jpg" rel="prettyPhoto[gallery2]" data-detail="#fusarium-oxysporum" title="A soil inhabiting fungus that causes a vascular wilt disease (photo courtesy UC Davis)"><img src="img/FOV4-lower-leaves-yellow-courtesy-UC-Davis_234square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>
+                    <li><a href="img/FOV4-xylem-discoloration-courtesy-UC-Davis_468x872.jpg" rel="prettyPhoto[gallery2]" data-detail="#fusarium-oxysporum" title="A soil inhabiting fungus that causes a vascular wilt disease (photo courtesy UC Davis)"><img src="img/FOV4-xylem-discoloration-courtesy-UC-Davis_234square.jpg" alt="Fusarium oxysporum Race 4" /></a></li>
+	                
+                    <li><a href="img/root-knot-nemotode-2up-courtesy-M-McClure-UofA_468x606.jpg" rel="prettyPhoto[gallery2]" data-detail="#root-knot-nematode" title="Meloidogyne incognita, infects cotton and many other plants"><img src="img/root-knot-nemotode-2up-courtesy-M-McClure-UofA_234square.jpg" alt="Root-knot Nematode" /></a></li>
+	                
+                </ul>
+
+
+            </div>
+      
+
+            <p><br /></p>
+        
+		
+	    </div><!-- /content -->
+
+         <!-- photo popups -->
+         <!--<div data-role="popup" id="popup-FusariumOxysporumRace4" class="photopopup">
+             <a href="#photos" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn-right" data-theme="b" data-overlay-theme="b" title="Close">Close</a>
+             <div class="overlay">
+                 <div class="overlaytitle">
+                     Fusarium oxysporum Race 4
+                 </div>
+                 <div>
+                     A soil inhabiting fungus that causes a vascular wilt disease
+                 </div>
+             </div>
+             <img src="img/FusariumOxysporumRace4.jpg" alt="Fusarium oxysporum Race 4" />
+         </div>-->
+
+         <!-- / photo popups -->
+
+	    <div data-role="footer" data-id="footer" data-theme="b" data-position="fixed" data-visible-on-page-show="false" data-tap-toggle="false">
+            <div data-role="navbar" data-iconpos="top">
+		        <ul>
+			        <li><a href="#home" data-icon="back" data-rel="back">Back</a></li>
+			        <li><a href="#popupNested1" data-icon="grid" data-rel="popup" data-role="button" data-inline="true">Menu</a></li><!--data-position-to="window"-->
+			        <li><a href="#contact" data-icon="edit" data-transition="pop">Contact</a></li>
+		        </ul>
+	        </div><!-- /navbar -->
+            <div class="footerlinks">
+                <!--
+                This App and all content is courtesy of 
+                <a href="http://ag.arizona.edu/pls" class="ui-link">School of Plant Sciences </a>, 
+                <a href="http://ag.arizona.edu/PLP/plphome.html">Division of Plant Pathology and Microbiology</a>, 
+                <a href="http://ag.arizona.edu/">College of Agriculture and Life Sciences</a>, <a href="http://www.arizona.edu/"> The University of Arizona </a>
+                -->
+                This App is funded by the <a href="http://www.arizonacrop.org/" title="Arizona Crop Improvement Association" rel="external" target="_blank" class="nowrap">Arizona Crop Improvement Association</a>
+                 and <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank" class="nowrap">University of Arizona Cooperative Extension</a>
+                <br />UA Extension responsible for all content
+                <br />
+                &copy <span class="copyrightyear">2013</span> Arizona Board of Regents
+            </div>
+	        
+            <div class="ua-web-branding-banner-v1 ua-wrapper bgDark blue-grad">
+                <a class="ua-home asdf" href="http://arizona.edu" title="The University of Arizona" rel="external">
+                <p>The University of Arizona</p>
+                </a>
+                <a class="calslogo" href="http://cals.arizona.edu/" title="College of Agriculture and Life Sciences" rel="external">
+                    <p>College of Agriculture and Life Sciences</p>
+                </a>
+            </div>
+        </div><!-- /footer -->
+
+    
+         <!--<div data-role="panel" id="optionspanel" data-id="optionspanel" data-panel="optionspanel" data-position="right" data-display="overlay" class="panel-content">-->
+        <!--<div data-role="popup" id="optionspanel1" class="optionspanel" data-id="optionspanel1" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+		    <h3>Options</h3>
+            To close, click off the panel, hit the Esc key, or use the button below:
+            
+            <a href="#optionspanel" data-rel="close" data-role="button" data-icon="back" data-mini="true">Close panel</a>
+	    </div>--><!-- /popup -->
+
+         <div data-role="popup" id="popupNested1" data-id="popupNested1" data-theme="none" data-tolerance="30,15,175,15">
+		    <div data-role="collapsible-set" data-theme="c" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Navigate Pages</h2>
+				    <ul data-role="listview">
+					    <li><a href="#home" data-transition="flip" data-direction="reverse">Home Page</a></li>
+					    <li><a href="#photos" data-transition="slide">Browse Photos</a></li>
+					    <li><a href="#list" data-transition="slide">Browse List</a></li>
+                        <li><a href="#determine" data-transition="slide">Disease Identifier Guide</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Interact</h2>
+				    <ul data-role="listview">
+					    <!--<li><a href="#" data-rel="popup">Find My Location</a></li>-->
+                        <li><a href="#" onclick="alertCameraNotAvailable()" data-rel="popup">Take a Photo</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Contact</h2>
+				    <ul data-role="listview">
+					    <li><a href="#contact" data-transition="pop">Contact U of A</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <!--<div data-role="collapsible" data-inset="false">
+				    <h2>Settings</h2>
+				    <ul data-role="listview">
+					    <li><a href="#optionspanel1" data-rel="popup" data-transition="slide" data-position-to="window" onclick="return getHeightForOptionsPanel('#optionspanel1')">Options</a></li>
+				    </ul>
+			    </div>--><!-- /collapsible -->
+		    </div><!-- /collapsible set -->
+	    </div><!-- /popup -->
+        
+
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $("a[rel^='prettyPhoto']").prettyPhoto({
+                     animation_speed: 'fast', /* fast/slow/normal */
+                     slideshow: false, /* false OR interval time in ms */
+                     autoplay_slideshow: false, /* true/false */
+                     opacity: 0.80, /* Value between 0 and 1 */
+                     show_title: true, /* true/false */
+                     allow_resize: true, /* Resize the photos bigger than viewport. true/false */
+                     allow_expand: true, /* Allow the user to expand a resized image. true/false */
+                     default_width: 500,
+                     default_height: 344,
+                     counter_separator_label: ' of ', /* The separator for the gallery counter 1 "of" 2 */
+                     theme: 'pp_default', /* light_rounded / dark_rounded / light_square / dark_square / facebook */
+                     horizontal_padding: 20, /* The padding on each side of the picture */
+                     hideflash: false, /* Hides all the flash object on a page, set to TRUE if flash appears over prettyPhoto */
+                     wmode: 'opaque', /* Set the flash wmode attribute */
+                     autoplay: false, /* Automatically start videos: True/False */
+                     modal: false, /* If set to true, only the close button will close the window */
+                     deeplinking: false, /* Allow prettyPhoto to update the url to enable deeplinking. */
+                     overlay_gallery: false, /* If set to true, a gallery will overlay the fullscreen image on mouse over */
+                     keyboard_shortcuts: true, /* Set to false if you open forms inside prettyPhoto */
+                     changepicturecallback: function () { }, /* Called everytime an item is shown/changed */
+                     callback: function () { }, /* Called when prettyPhoto is closed */
+                     ie6_fallback: true,
+                     markup: '<div class="pp_pic_holder"> \
+						<div class="ppt">&nbsp;</div> \
+						<div class="pp_top"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+						<div class="pp_content_container"> \
+							<div class="pp_left"> \
+							<div class="pp_right"> \
+								<div class="pp_content"> \
+									<div class="pp_loaderIcon"></div> \
+									<div class="pp_fade"> \
+										<a href="#" class="pp_expand" title="Expand the image">Expand</a> \
+										<div class="pp_hoverContainer"> \
+											<a class="pp_next" href="#">next</a> \
+											<a class="pp_previous" href="#">previous</a> \
+										</div> \
+										<div id="pp_full_res"></div> \
+										<div class="pp_details"> \
+											<div class="pp_nav"> \
+												<a href="#" class="pp_arrow_previous">Previous</a> \
+												<p class="currentTextHolder">0/0</p> \
+												<a href="#" class="pp_arrow_next">Next</a> \
+											</div> \
+											<p class="pp_description"></p> \
+											<div class="pp_social">{pp_social}</div> \
+											<a class="pp_close" href="#">Close</a> \
+										</div> \
+									</div> \
+								</div> \
+							</div> \
+							</div> \
+						</div> \
+						<div class="pp_bottom"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+					</div> \
+					<div class="pp_overlay"></div>',
+                     gallery_markup: '<div class="pp_gallery"> \
+								<a href="#" class="pp_arrow_previous">Previous</a> \
+								<div> \
+									<ul> \
+										{gallery} \
+									</ul> \
+								</div> \
+								<a href="#" class="pp_arrow_next">Next</a> \
+							</div>',
+                     image_markup: '<img id="fullResImage" src="{path}" />',
+                     iframe_markup: '<iframe src ="{path}" width="{width}" height="{height}" frameborder="no"></iframe>',
+                     inline_markup: '<div class="pp_inline">{content}</div>',
+                     custom_markup: '',
+                     social_tools: '<div class="readmore"><a href="{location_href}" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b ui-btn-inline" onclick="$.prettyPhoto.close();"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Read more...</span></span></a></div>' /* html or false to disable */
+                     
+                 });
+             });
+        </script>
+
+    </div><!-- /page : photos -->
+
+
+
+    <!-- LIST -->
+     <div data-role="page" id="list" data-theme="b" data-title="List - Diseases of Early Season Cotton">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Cotton Diseases
+		    </h1>
+        
+            
+            <a href="#home" data-icon="home" data-iconpos="notext" data-transition="flip" data-direction="reverse" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home"></a>
+           
+            
+            <!--<a href="#optionspanel2" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right" onclick="return getHeightForOptionsPanel('#optionspanel2')">Options</a>-->
+
+            
+            <div data-role="navbar">
+	            <ul>
+		             <li><a href="#photos" data-transition="slide">Photos</a></li>
+		            <li><a href="#list" class="ui-btn-active ui-state-persist">List</a></li>
+                    <li><a href="#determine" data-transition="slide">Identifier</a></li>   
+	            </ul>
+            </div><!-- /navbar -->
+            
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="ui-content center">
+		    <div class="content-primary">
+                <div class="pagetitle">
+                    Listing of Diseases of Early Season Cotton
+                    <div>
+                        Pima and upland ( <span class="italic">Gossypium barbadense; G. hirsutum</span> ) in Arizona
+                    </div>
+                </div>
+                <br />
+		    </div>
+            <div class="content-secondary">
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#rhizoctonia-solani" data-rel="dialog" data-transition="pop">
+                            <img src="img/rhizoctonia-brown-root-rot_thumb.jpg" width="80" height="80" alt="" />
+				            <h3 class="ui-li-heading">Rhizoctonia solani</h3>
+				            <p class="ui-li-desc">A soil borne fungus found throughout all cotton growing areas</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#thielaviopsis-basicola" data-rel="dialog" data-transition="pop">
+                            <img src="img/thielaviopsis-basicola-root-rot_thumb.jpg" width="80" height="80" alt="" />
+				            <h3 class="ui-li-heading">Thielaviopsis basicola</h3>
+				            <p class="ui-li-desc">A soil borne fungus that is easily found in soils throughout the state but causes disease only when soils are relatively cold and wet</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">
+                            <img src="img/verticillium-wilt-xylem-discoloration_thumb.jpg" width="80" height="80" alt="" />
+				            <h3 class="ui-li-heading">Verticillium dahliae</h3>
+				            <p class="ui-li-desc">A soil borne fungus that enters the roots and grows into the vascular system of the plant</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#fusarium-oxysporum" data-rel="dialog" data-transition="pop">
+                            <img src="img/FOV4-vas-discolor-courtesy-UC-Davis_thumb.jpg" width="80" height="80" class="ui-li-thumb" alt=""/>
+				            <h3 class="ui-li-heading">Fusarium oxysporum Race 4</h3>
+				            <p class="ui-li-desc">A soil inhabiting fungus that causes a vascular wilt disease</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#root-knot-nematode" data-rel="dialog" data-transition="pop">
+                            <img src="img/root-knot-nemotode-2up-courtesy-M-McClure-UofA_thumb.jpg" width="80" height="80" alt="" />
+				            <h3 class="ui-li-heading">Root-knot Nematode</h3>
+				            <p class="ui-li-desc">Meloidogyne incognita, infects cotton and many other plants</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+      
+
+            <p><br /></p>
+        
+		
+	    </div><!-- /content -->
+
+	    <div data-role="footer" data-id="footer" data-position="fixed" data-visible-on-page-show="false" data-theme="b" data-tap-toggle="false"> 
+            <div data-role="navbar" data-iconpos="top">
+		        <ul>
+			        <li><a href="#home" data-icon="back" data-rel="back">Back</a></li>
+			        <li><a href="#popupNested2" data-icon="grid" data-rel="popup" data-role="button" data-inline="true">Menu</a></li><!--data-position-to="window"-->
+			        <li><a href="#contact" data-icon="edit" data-transition="pop">Contact</a></li>
+		        </ul>
+	        </div><!-- /navbar -->
+            <div class="footerlinks">
+                <!--
+                This App and all content is courtesy of 
+                <a href="http://ag.arizona.edu/pls" class="ui-link">School of Plant Sciences </a>, 
+                <a href="http://ag.arizona.edu/PLP/plphome.html">Division of Plant Pathology and Microbiology</a>, 
+                <a href="http://ag.arizona.edu/">College of Agriculture and Life Sciences</a>, <a href="http://www.arizona.edu/"> The University of Arizona </a>
+                -->
+                This App is funded by the <a href="http://www.arizonacrop.org/" title="Arizona Crop Improvement Association" rel="external" target="_blank">Arizona Crop Improvement Association</a>
+                <br /> and <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank">University of Arizona Cooperative Extension</a>
+                <br /> UA Extension responsible for all content
+                <br />
+                &copy <span class="copyrightyear">2013</span> Arizona Board of Regents
+            </div>
+	        
+            <div class="ua-web-branding-banner-v1 ua-wrapper bgDark blue-grad">
+                <a class="ua-home asdf" href="http://arizona.edu" title="The University of Arizona" rel="external">
+                <p>The University of Arizona</p>
+                </a>
+                <a class="calslogo" href="http://cals.arizona.edu/" title="College of Agriculture and Life Sciences" rel="external">
+                    <p>College of Agriculture and Life Sciences</p>
+                </a>
+            </div>
+        </div><!-- /footer -->
+
+    
+         <!--<div data-role="panel" id="optionspanel" data-id="optionspanel" data-panel="optionspanel" data-position="right" data-display="overlay" class="panel-content">-->
+        <!--<div data-role="popup" id="optionspanel2" class="optionspanel" data-id="optionspanel2" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+		    <h3>Options</h3>
+            To close, click off the panel, hit the Esc key, or use the button below:
+            
+            <a href="#optionspanel2" data-rel="close" data-role="button" data-icon="back" data-mini="true">Close panel</a>
+	    </div>--><!-- /popup -->
+
+         <div data-role="popup" id="popupNested2" data-id="popupNested" data-theme="none" data-tolerance="30,15,175,15">
+		    <div data-role="collapsible-set" data-theme="c" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Navigate Pages</h2>
+				    <ul data-role="listview">
+					    <li><a href="#home" data-transition="flip" data-direction="reverse">Home Page</a></li>
+					    <li><a href="#photos" data-transition="slide">Browse Photos</a></li>
+					    <li><a href="#list" data-transition="slide">Browse List</a></li>
+                        <li><a href="#determine" data-transition="slide">Disease Identifier Guide</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Interact</h2>
+				    <ul data-role="listview">
+					    <!--<li><a href="#" data-rel="popup">Find My Location</a></li>-->
+                        <li><a href="#" onclick="alertCameraNotAvailable()" data-rel="popup">Take a Photo</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Contact</h2>
+				    <ul data-role="listview">
+					    <li><a href="#contact" data-transition="pop">Contact U of A</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <!--<div data-role="collapsible" data-inset="false">
+				    <h2>Settings</h2>
+				    <ul data-role="listview">
+					    <li><a href="#optionspanel2" data-rel="popup" data-transition="slide" data-position-to="window" onclick="return getHeightForOptionsPanel('#optionspanel2')">Options</a></li>
+				    </ul>
+			    </div>--><!-- /collapsible -->
+		    </div><!-- /collapsible set -->
+	    </div><!-- /popup -->
+        
+
+    </div><!-- /page : list -->
+
+
+
+    <!-- DETERMINE (IDENTIFIER) -->
+     <div data-role="page" id="determine" data-theme="b" data-title="Identify the Diseases of Early Season Cotton">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Cotton Diseases
+		    </h1>
+        
+            
+            <a href="#home" data-icon="home" data-iconpos="notext" data-transition="flip" data-direction="reverse" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home"></a>
+           
+            
+            <!--<a href="#optionspanel3" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right" onclick="return getHeightForOptionsPanel('#optionspanel3')">Options</a>-->
+
+            
+            <div data-role="navbar">
+	            <ul>
+		            <li><a href="#photos" data-transition="slide">Photos</a></li>
+		            <li><a href="#list" data-transition="slidedown">List</a></li>
+                    <li><a href="#determine" class="ui-btn-active ui-state-persist">Identifier</a></li>
+	            </ul>
+            </div><!-- /navbar -->
+            
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="ui-content center">
+		    <div class="content-primary">
+                <div class="pagetitle">
+                    Help Me Identify the Diseases of Early Season Cotton
+                    <div>
+                        Pima and upland ( <span class="italic">Gossypium barbadense; G. hirsutum</span> ) in Arizona
+                    </div>
+                </div>
+                <br />
+		    </div>
+            <div class="content-secondary">
+                <br />
+                <div class="content-contrain">
+                    We have developed a Diagnostic Guide for diseases of cotton plants at seedling stage to 8-10 nodes, 
+                    to help you identify which disease you are seeing:
+                </div>
+                
+                <br />
+                <a href="#decider1" data-role="button" data-rel="dialog" data-transition="pop" class="maxbtnwidth">Help Me <br />Identify the Disease</a>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                If you have any feedback on this wizard, please: <a href="#contact" data-role="button" class="maxbtnwidth">Contact Us!</a>
+
+            </div>
+      
+
+            <p><br /></p>
+        
+		
+	    </div><!-- /content -->
+
+	    <div data-role="footer" data-id="footer" data-position="fixed" data-visible-on-page-show="false" data-theme="b" data-tap-toggle="false"> 
+            <div data-role="navbar" data-iconpos="top">
+		        <ul>
+			        <li><a href="#home" data-icon="back" data-rel="back">Back</a></li>
+			        <li><a href="#popupNested3" data-icon="grid" data-rel="popup" data-role="button" data-inline="true">Menu</a></li><!--data-position-to="window"-->
+			        <li><a href="#contact" data-icon="edit" data-transition="pop">Contact</a></li>
+		        </ul>
+	        </div><!-- /navbar -->
+            <div class="footerlinks">
+                <!--
+                This App and all content is courtesy of 
+                <a href="http://ag.arizona.edu/pls" class="ui-link">School of Plant Sciences </a>, 
+                <a href="http://ag.arizona.edu/PLP/plphome.html">Division of Plant Pathology and Microbiology</a>, 
+                <a href="http://ag.arizona.edu/">College of Agriculture and Life Sciences</a>, <a href="http://www.arizona.edu/"> The University of Arizona </a>
+                -->
+                This App is funded by the <a href="http://www.arizonacrop.org/" title="Arizona Crop Improvement Association" rel="external" target="_blank" class="nowrap">Arizona Crop Improvement Association</a>
+                 and <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank" class="nowrap">University of Arizona Cooperative Extension</a>
+                <br />UA Extension responsible for all content
+                <br />
+                &copy <span class="copyrightyear">2013</span> Arizona Board of Regents
+            </div>
+	        
+            <div class="ua-web-branding-banner-v1 ua-wrapper bgDark blue-grad">
+                <a class="ua-home asdf" href="http://arizona.edu" title="The University of Arizona" rel="external">
+                <p>The University of Arizona</p>
+                </a>
+                <a class="calslogo" href="http://cals.arizona.edu/" title="College of Agriculture and Life Sciences" rel="external">
+                    <p>College of Agriculture and Life Sciences</p>
+                </a>
+            </div>
+        </div><!-- /footer -->
+
+    
+         <!--<div data-role="panel" id="optionspanel" data-id="optionspanel" data-panel="optionspanel" data-position="right" data-display="overlay" class="panel-content">-->
+        <!--<div data-role="popup" id="optionspanel3" class="optionspanel" data-id="optionspanel3" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+		    <h3>Options</h3>
+            To close, click off the panel, hit the Esc key, or use the button below:
+            
+            <a href="#optionspanel3" data-rel="close" data-role="button" data-icon="back" data-mini="true">Close panel</a>
+	    </div>--><!-- /popup -->
+
+         <div data-role="popup" id="popupNested3" data-id="popupNested3" data-theme="none" data-tolerance="30,15,175,15">
+		    <div data-role="collapsible-set" data-theme="c" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Navigate Pages</h2>
+				    <ul data-role="listview">
+					    <li><a href="#home" data-transition="flip" data-direction="reverse">Home Page</a></li>
+					    <li><a href="#photos" data-transition="slide">Browse Photos</a></li>
+					    <li><a href="#list" data-transition="slide">Browse List</a></li>
+                        <li><a href="#determine" data-transition="slide">Disease Identifier Guide</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Interact</h2>
+				    <ul data-role="listview">
+					    <!--<li><a href="#" data-rel="popup">Find My Location</a></li>-->
+                        <li><a href="#" onclick="alertCameraNotAvailable()" data-rel="popup">Take a Photo</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Contact</h2>
+				    <ul data-role="listview">
+					    <li><a href="#contact" data-transition="pop">Contact U of A</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <!--<div data-role="collapsible" data-inset="false">
+				    <h2>Settings</h2>
+				    <ul data-role="listview">
+					    <li><a href="#optionspanel3" data-rel="popup" data-transition="slide" data-position-to="window" onclick="return getHeightForOptionsPanel('#optionspanel3')">Options</a></li>
+				    </ul>
+			    </div>--><!-- /collapsible -->
+		    </div><!-- /collapsible set -->
+	    </div><!-- /popup -->
+        
+
+
+    </div><!-- /page : determine -->
+
+
+
+    
+
+
+
+     <!-- CONTACT -->
+     <div data-role="page" id="contact" data-theme="b" data-title="Contact - Diseases of Early Season Cotton">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Cotton Diseases
+		    </h1>
+        
+            
+            <a href="#home" data-icon="home" data-iconpos="notext" data-transition="flip" data-direction="reverse" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home"></a>
+           
+            
+            <!--<a href="#optionspanel4" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button" data-icon="gear"  data-mini="true" data-theme="b" class="ui-btn-right" onclick="return getHeightForOptionsPanel('#optionspanel4')">Options</a>-->
+
+            
+            <div data-role="navbar">
+	            <ul>
+		            <li><a href="#photos" data-transition="slide">Photos</a></li>
+		            <li><a href="#list" data-transition="slidedown">List</a></li>
+                    <li><a href="#determine" data-transition="slide">Identifier</a></li>
+	            </ul>
+            </div><!-- /navbar -->
+            
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="ui-content center" itemscope itemtype="http://schema.org/EducationalOrganization">
+		    <div class="content-primary">
+                <div class="pagetitle" itemprop="name">
+                    Contact UofA Extension Plant Pathology
+                    
+                </div>
+                <br />
+		    </div>
+            <div class="content-secondary">
+                <div class="content-contrain">
+                    If you've found something that you'd like to share with us, for questions or feedback, you may take a photo with your smartphone and then send it to us.
+                </div>
+                
+                
+                <a href="#" onclick="alertCameraNotAvailable()" data-role="button" class="maxbtnwidth">Take a picture</a>
+
+                <br /><br />
+                If you have questions or feedback:
+                <br />
+                <a href="mailto:molsen@cals.arizona.edu?subject=Contact%20from%20Cotton%20Diseases%20App" data-role="button" itemprop="email" class="maxbtnwidth">Email Us</a>
+            
+                
+                <br /><br />
+                To call us directly:
+                <br />
+                <a href="tel:1-520-626-2681" data-role="button" itemprop="telephone" class="maxbtnwidth">Call Us</a>
+
+                <p><br /></p>
+
+                <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank" itemprop="url"><img src="img/cals-ext-logo.png" itemprop="logo" alt="University of Arizona Cooperative Extension" /></a>
+            </div>
+      
+
+            <p><br /></p>
+        
+		
+	    </div><!-- /content -->
+
+	    <div data-role="footer" data-id="footer" data-position="fixed" data-visible-on-page-show="false" data-theme="b" data-tap-toggle="false"> 
+            <div data-role="navbar" data-iconpos="top">
+		        <ul>
+			        <li><a href="#home" data-icon="back" data-rel="back">Back</a></li>
+			        <li><a href="#popupNested4" data-icon="grid" data-rel="popup" data-role="button" data-inline="true">Menu</a></li><!--data-position-to="window"-->
+			        <li><a href="#contact" data-icon="edit" data-transition="pop" class="ui-btn-active">Contact</a></li>
+		        </ul>
+	        </div><!-- /navbar -->
+            <div class="footerlinks">
+                <!--
+                This App and all content is courtesy of 
+                <a href="http://ag.arizona.edu/pls" class="ui-link">School of Plant Sciences </a>, 
+                <a href="http://ag.arizona.edu/PLP/plphome.html">Division of Plant Pathology and Microbiology</a>, 
+                <a href="http://ag.arizona.edu/">College of Agriculture and Life Sciences</a>, <a href="http://www.arizona.edu/"> The University of Arizona </a>
+                -->
+                This App is funded by the <a href="http://www.arizonacrop.org/" title="Arizona Crop Improvement Association" rel="external" target="_blank" class="nowrap">Arizona Crop Improvement Association</a>
+                 and <a href="http://extension.arizona.edu/" title="University of Arizona Cooperative Extension" rel="external" target="_blank" class="nowrap">University of Arizona Cooperative Extension</a>
+                <br />UA Extension responsible for all content
+                <br />
+                &copy <span class="copyrightyear">2013</span> Arizona Board of Regents
+            </div>
+	        
+            <div class="ua-web-branding-banner-v1 ua-wrapper bgDark blue-grad">
+                <a class="ua-home asdf" href="http://arizona.edu" title="The University of Arizona" rel="external">
+                <p>The University of Arizona</p>
+                </a>
+                <a class="calslogo" href="http://cals.arizona.edu/" title="College of Agriculture and Life Sciences" rel="external">
+                    <p>College of Agriculture and Life Sciences</p>
+                </a>
+            </div>
+        </div><!-- /footer -->
+
+    
+         <!--<div data-role="panel" id="optionspanel" data-id="optionspanel" data-panel="optionspanel" data-position="right" data-display="overlay" class="panel-content">-->
+        <!--<div data-role="popup" id="optionspanel4" class="optionspanel" data-id="optionspanel4" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+		    <h3>Options</h3>
+            To close, click off the panel, hit the Esc key, or use the button below:
+            
+            <a href="#optionspanel4" data-rel="close" data-role="button" data-icon="back" data-mini="true">Close panel</a>
+	    </div>--><!-- /popup -->
+
+         <div data-role="popup" id="popupNested4" data-id="popupNested4" data-theme="none" data-tolerance="30,15,175,15">
+		    <div data-role="collapsible-set" data-theme="c" data-content-theme="a" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" style="margin:0; width:250px;">
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Navigate Pages</h2>
+				    <ul data-role="listview">
+					    <li><a href="#home" data-transition="flip" data-direction="reverse">Home Page</a></li>
+					    <li><a href="#photos" data-transition="slide">Browse Photos</a></li>
+					    <li><a href="#list" data-transition="slide">Browse List</a></li>
+                        <li><a href="#determine" data-transition="slide">Disease Identifier Guide</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Interact</h2>
+				    <ul data-role="listview">
+					    <!--<li><a href="#" data-rel="popup">Find My Location</a></li>-->
+                        <li><a href="#" onclick="alertCameraNotAvailable()" data-rel="popup">Take a Photo</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <div data-role="collapsible" data-inset="false">
+				    <h2>Contact</h2>
+				    <ul data-role="listview">
+					    <li><a href="#contact" data-transition="pop">Contact U of A</a></li>
+				    </ul>
+			    </div><!-- /collapsible -->
+			    <!--<div data-role="collapsible" data-inset="false">
+				    <h2>Settings</h2>
+				    <ul data-role="listview">
+					    <li><a href="#optionspanel4" data-rel="popup" data-transition="slide" data-position-to="window" onclick="return getHeightForOptionsPanel('#optionspanel4')">Options</a></li>
+				    </ul>
+			    </div>--><!-- /collapsible -->
+		    </div><!-- /collapsible set -->
+	    </div><!-- /popup -->
+        
+
+    </div><!-- /page : CONTACT -->
+
+
+
+
+
+
+    <!-- DISEASES -->
+
+    <!-- Fusarium-Oxysporum -->
+    <div data-role="dialog" data-theme="b" id="fusarium-oxysporum" data-title="Fusarium Oxysporum Race 4">
+        <div data-role="header">
+            <h1>Cotton Diseases</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="center">
+            <div class="content-primary">
+                <div class="pagetitle">
+                    <span class="italic">Fusarium oxysporum</span> f. sp. <span class="italic">vasinfectum</span> race 4
+                </div>
+		        <p>
+                    A new race of <span class="italic">Fusarium oxysporum</span> f. sp. <span class="italic">vasinfectum</span> (FOV), 
+                    the Fusarium wilt pathogen of cotton, has become problematic in the San Joaquin Valley of California.  
+                    Known as <span class="italic">Fusarium oxysporum</span> f. sp. <span class="italic">vasinfectum</span> race 4 (FOV 4), 
+                    it is an early season disease on cotton.  Fusarium wilt disease has never been problematic in Arizona 
+                    and was not detected in 2012, but surveys continue in 2013. 
+                </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/FOV4-wilted-plant-courtesy-UC-Davis_468x351.jpg" alt="Fusarium Oxysporum Race 4" />
+                    <div class="caption">
+                        1. FOV4 wilted plants <span>(Fusarium oxysporum Race 4)</span>
+                    </div>
+                </div>
+                
+                <p>
+                    
+                    Symptoms in seedlings at the 1-2 leaf stage are wilt and/or defoliation and collapse.  
+                    Severely affected plants die. In plants with 4-10 nodes, symptoms may include pale yellow to tan patches on the lower leaves (photo 2). 
+                </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/FOV4-leaf-symptoms-courtesy-UC-Davis_468x351.jpg" alt="Fusarium Oxysporum Race 4" />
+                    <div class="caption">
+                        2. FOV4 leaf symptoms <span>(Fusarium oxysporum Race 4)</span>
+                    </div>
+                </div>
+                <p>
+                    When the root and lower stem are cut diagonally, dark brown discoloration is observed in the vascular tissue (photo 3), 
+                    and plants may be partially or totally defoliated. 
+                </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/FOV4-vas-discolor-courtesy-UC-Davis_468x468.jpg" alt="Fusarium Oxysporum Race 4" />
+                    <div class="caption">
+                        3. FOV4 vascular discoloration <span>(Fusarium oxysporum Race 4)</span>
+                    </div>
+                </div>
+                <p>
+                    
+                    Symptoms in plants with 4-10 nodes or older are very similar to those of <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">Verticillium wilt</a>.
+                    <br /><br />
+                    Several races of FOV occur worldwide, and they infect only cotton.  Some races depend on co-infection with root-knot nematode to be problematic, but race 4 does not.  
+                    FOV is introduced into fields in soil, plant debris and contaminated seed.  It moves within fields in soil and water.  
+                    FOV increases in the soil when infected plants are plowed down. FOV 4 can be seed borne, 
+                    and infected seed is a likely means of distribution of the pathogen to new areas. 
+                    Disease severity depends on amount of FOV 4 in the soil and cotton variety. 
+                    Varietal susceptibility varies widely in Pima cotton, but upland varieties are susceptible also.
+                    <br /><br />
+                    FOV 4 can be prevented by planting tolerant varieties of cotton; using seed produced where FOV 4 does not occur; 
+                    cleaning equipment of any kind (including shoes) that may have been used in an infested field and carry soil from one field to another. 
+                    FOV 4 also survives on many other plants without causing disease, including rotation crops and weeds, 
+                    so movement of equipment from California should be carefully monitored.
+                    
+                    
+                    <!--
+                        ref: UC Davis content
+                    Fusarium oxysporum f. sp. vasinfectum (or “FOV”) is a soilinhabiting fungus that causes a vascular wilt disease in susceptible cotton varieties. 
+                    It has been widely recognized in the San Joaquin Valley since the 1950’s. 
+                    Historically, Fusarium wilt in cotton produced visible symptoms and caused economic damage only in susceptible varieties in combination with 
+                    significant populations of the root knot nematode (Meloidogyne incognita). Fusarium wilts usually seen in these prior recognized cases were 
+                    caused by race 1 or race 2 of FOV. In recent years, however, several localized occurrences of FOV infections with moderate to severe plant 
+                    damage have been confirmed in the absence of nematode populations. 
+                    <br /><br />
+                    In these cases, the disease was caused by race 4 FOV. 
+                    Evaluations in 2003 indicated that all widely-grown commercial Pima varieties tested were more seriously damaged than tested Acala or 
+                    non-Acala Upland varieties. Field trials also indicated good levels of resistance to race 4 FOV in some experimental Pima varieties. 
+                    It is significant, however, that many Upland/Acala varieties field-tested under high race 4 inoculum loads in 2003 were also infected, 
+                    albeit with fewer symptoms and less damage than in most Pima varieties.
+                    -->
+		        </p>
+                <br />
+               <!-- <a href="http://en.wikipedia.org/wiki/Fusarium_oxysporum" data-role="button" data-rel="external">Read more on Wikipedia</a>
+                <br />-->
+            </div>
+            <div class="content-secondary">
+                <a href="#list" data-rel="back" data-role="button" data-icon="back">Back to List</a>
+            </div>	
+		    
+	    </div><!-- /content -->
+
+    </div><!-- /dialog Fusarium-Oxysporum -->
+
+
+    <!-- root-knot-nematode -->
+    <div data-role="dialog" data-theme="b" id="root-knot-nematode" data-title="Root-knot Nematode">
+        <div data-role="header">
+            <h1>Cotton Diseases</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="center">
+            <div class="content-primary">
+                <div class="pagetitle">
+                    Root-knot Nematode
+
+                </div>
+		        <p>
+                    
+                    The Root-knot nematode, <span class="italic">Meloidogyne incognita</span>, infects cotton and many other plants.  
+                    This nematode is widespread in Arizona and is usually found in sandy or sandy loam soils.  
+                    It is an obligate parasite that must complete its life cycle in a plant host, 
+                    but eggs are persistent and can remain inactive in the absence of a host and/or in fallow fields for months or years.  
+                    It is most active in the summer when soil temperatures are warm.
+                 </p>
+                 <p>
+                    As <span class="italic">M. incognita</span> larvae enter the plant root, feed, and mature, 
+                     the surrounding cells of the plant root increase in size and divide causing swellings (galls) on the roots.  
+                  </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/root-knot-nemotode-2up-courtesy-M-McClure-UofA_468x606.jpg" alt="Root-knot Nematode" />
+                    <div class="caption">
+                        1. <span>Root-knot nematode</span> on young cotton
+                    </div>
+                </div>
+                     
+                 <p>
+                    In cotton, these swellings are usually small and often very inconspicuous.  
+                     Plants may be heavily infected even though swellings are not easily visible (photo 1).  
+                     Once cotton plants are infected, the flow of nutrients and water is restricted.  
+                     Severely infected young plants are often stunted and chlorotic.  
+                     Infected mature plants do not die, but yields are reduced. 
+                </p>
+                 <p>
+                     Because of the wide host range of root-knot nematode, control is difficult. 
+                     Sorghum, corn, melons, watermelon, peppers and beans, among many other crops, are all hosts. 
+                     Rotations to alfalfa and oats, which are not hosts, are effective, especially in  multiple year rotations. 
+		        </p>
+                 <p>
+                     Pre-plant soil fumigation with 1,3 Dichloropropene is also effective in reducing early infections.  
+                     Fumigation is recommended if greater than 0.5 juveniles/cc soil are detectable. 
+                 </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/root-knot-nematode-swellings_468x310.jpg" alt="Root-knot Nematode" />
+                    <div class="caption">
+                        2. Swellings on roots <span>(Root-knot nematode)</span>
+                    </div>
+                </div>
+                <br />
+                <!--<a href="http://en.wikipedia.org/wiki/Root-knot_nematode" data-role="button" data-rel="external">Read more on Wikipedia</a>
+                <br />-->
+            </div>
+            <div class="content-secondary">
+                <a href="#list" data-rel="back" data-role="button" data-icon="back">Back to List</a>
+            </div>	
+		    
+	    </div><!-- /content -->
+
+    </div><!-- /dialog root-knot-nematode -->
+
+
+    <!-- Verticillium dahliae -->
+    <div data-role="dialog" data-theme="b" id="verticillium-dahliae" data-title="Verticillium wilt">
+        <div data-role="header">
+            <h1>Cotton Diseases</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="center">
+            <div class="content-primary">
+                <div class="pagetitle">
+                    Verticillium wilt
+                </div>
+		        <p>
+                    
+                    Verticillium wilt of cotton is caused by <span class="italic">Verticillium dahliae</span>, 
+                    a soil borne fungus that enters the roots and grows into the vascular system of the plant. 
+                    It does not cause root rot. Early symptoms appear as stunting and chlorotic areas in lower leaves (photo 1).  
+
+                    <!--Later chlorotic and necrotic areas on may be observed on all leaves (photo 41), -->
+                 </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/verticillium-wilt-stunted-leaf_468x468.jpg" alt="Verticillium wilt" />
+                    <div class="caption">
+                        1. Stunting and chlorotic areas <span>(Verticillium dahliae)</span>
+                    </div>
+                </div>
+                
+                <p>
+                    Chlorotic and necrotic areas may be observed on leaves (photo 2).
+                </p>
+                
+                <div class="center">
+                    <img class="diseasedialog" src="img/verticillium-leaf_468x379.jpg" alt="Verticillium wilt" />
+                    <div class="caption">
+                        2. Leaf chlorosis and necrosis <span>(Verticillium dahliae)</span>
+                    </div>
+                </div>
+                <p>
+                   Brown flecking discoloration of the vascular tissue (photo 3) is visible in a diagonal cut of the root and lower stem, 
+                    but this may be faint in younger plants. 
+                </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/verticillium-wilt-xylem-discoloration_468x374.jpg" alt="Verticillium wilt" />
+                    <div class="caption">
+                        3. Vascular discoloration <span>(Verticillium dahliae)</span>
+                    </div>
+                </div>
+                <p>
+                    Symptoms usually appear in late August and September, and may be more pronounced in years when early season temperatures 
+                    (May to early June) are lower than usual or in very susceptible varieties. 
+                    If plants wilt and die, foliar symptoms may be confused with those of cotton (Texas) root rot, 
+                    but plants infected with <span class="italic">Verticillium</span> alone 
+                    do not have rotten roots. Symptoms of Verticillium wilt of cotton are very similar to those of Fusarium wilt, 
+                    but to date no races of Fusarium wilt have been problematic in cotton in Arizona. 
+                </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/verticillium-of-young-cotton_468x378.jpg" alt="Verticillium wilt" />
+                    <div class="caption">
+                        4. Verticillium of young cotton
+                    </div>
+                </div>
+                <p>
+                    <span class="italic">V. dahliae</span> survives in the soil for long periods of time as microsclerotia, 
+                    tiny survival structures produced in the plant tissue. Upland (<span class="italic">G. hirsutum</span>) varieties 
+                    differ widely in susceptibilty, and less susceptible varieties should be planted in problematic fields.  
+                     Pima cotton (<span class="italic">Gossypium barbadense</span>) is tolerant.  
+                    Rotation to alfalfa and grains may reduce the number of microsclerotia in the soil, but  does not eliminate disease. 
+                    There are no chemical control measures available. 
+                </p>
+                                     
+                
+                <br />
+               <!-- <a href="http://en.wikipedia.org/wiki/Verticillium_wilt" data-role="button" data-rel="external">Read more on Wikipedia</a>
+                <br />-->
+            </div>
+            <div class="content-secondary">
+                <a href="#list" data-rel="back" data-role="button" data-icon="back">Back to List</a>
+            </div>	
+		    
+	    </div><!-- /content -->
+
+    </div><!-- /dialog verticillium-dahliae -->
+
+
+
+    <!-- thielaviopsis-basicola -->
+    <div data-role="dialog" data-theme="b" id="thielaviopsis-basicola" data-title="Thielaviopsis basicola">
+        <div data-role="header">
+            <h1>Cotton Diseases</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="center">
+            <div class="content-primary">
+                <div class="pagetitle">
+                    Thielaviopsis basicola
+                </div>
+		        <p>
+                    Seedling disease of cotton in Arizona is caused primarily by 
+                    <a href="#rhizoctonia-solani" data-rel="dialog" data-transition="pop" class="italic" title="View disease detail page">Rhizoctonia solani</a> 
+                    and to a lesser extent by <span class="italic">Thielaviopsis basicola</span>.
+                </p>
+		        <p>
+                    <span class="italic">Thielaviopsis</span> is a soil borne fungus that is found in soils throughout the state 
+                    but causes disease only when soils are relatively cold and wet. 
+                    It causes a dark colored root rot that also gives the disease the name "Black root rot" (photo 1). 
+                    
+                 </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/thielaviopsis-basicola-root-rot_468x579.jpg" alt="Thielaviopsis basicola" />
+                    <div class="caption">
+                        1. Black root rot <span>(Thielaviopsis basicola)</span>
+                    </div>
+                </div>
+                
+                <p>
+                   Planting into warm soils is the best way to avoid disease, but seed treatments are recommended for fields with a history of disease.  
+                    Few fungicides are active against this fungus, and an added value seed treatment may be necessary. 
+                </p>
+                
+                                     
+                
+                <br />
+                <!--<a href="http://en.wikipedia.org/wiki/Thielaviopsis_basicola" data-role="button">Read more on Wikipedia</a>
+                <br />-->
+            </div>
+            <div class="content-secondary">
+                <a href="#list" data-rel="back" data-role="button" data-icon="back">Back to List</a>
+            </div>	
+		    
+	    </div><!-- /content -->
+
+    </div><!-- /dialog thielaviopsis-basicola -->
+
+
+    <!-- rhizoctonia-solani -->
+    <div data-role="dialog" data-theme="b" id="rhizoctonia-solani" data-title="Rhizoctonia solani">
+        <div data-role="header">
+            <h1>Cotton Diseases</h1>
+	    </div><!-- /header -->
+
+	    <div data-role="content" class="center">
+            <div class="content-primary">
+                <div class="pagetitle">
+                    Rhizoctonia solani
+                </div>
+		        <p>
+                    Seedling disease of cotton in Arizona is caused primarily by <span class="italic">Rhizoctonia solani</span> and to a lesser extent by <a href="#thielaviopsis-basicola" data-rel="dialog" data-transition="pop" class="italic">Thielaviopsis basicola</a>.
+                </p>
+		        <p>
+                    <span class="italic">Rhizoctonia</span> is a soil borne fungus found throughout all cotton growing areas in Arizona. 
+                    It commonly causes post emergent damping-off or collapse of seedlings when plant growth is slowed by low soil temperatures, 
+                    residual herbicide phytotoxicity, planting too deep, poor seed vigor or crusting. 
+                    Infected seedlings may have sunken reddish to brown colored lesions on the upper root (photo 1), or roots may be soft and darkened 
+                    with a noticeable constriction at the soil line. 
+                 </p>
+                <div class="center">
+                    <img class="diseasedialog" src="img/rhizoctonia-brown-root-rot_468x362.jpg" alt="Rhizoctonia solani" />
+                    <div class="caption">
+                        1. Rhizoctonia root rot <span>(Rhizoctonia solani)</span>
+                    </div>
+                </div>
+                
+                <p>
+                    Fungicide treatment of seed reduces disease, but the best prevention is planting into soils when temperatures are favorable for fast germination 
+                    and using high quality seed. Fields with a history of severe disease should be rotated out of cotton. 
+                </p>
+                        
+                
+                <br />
+                <!--<a href="http://en.wikipedia.org/wiki/Rhizoctonia_solani" data-role="button" data-rel="external">Read more on Wikipedia</a>
+                <br />-->
+            </div>
+            <div class="content-secondary">
+                <a href="#list" data-rel="back" data-role="button" data-icon="back">Back to List</a>
+            </div>	
+		    
+	    </div><!-- /content -->
+
+    </div><!-- /dialog rhizoctonia-solani -->
+
+<!-- /DISEASES -->
+
+
+<!-- WIZARD -->
+
+    <!-- DECIDER 1 -->
+    <div data-role="dialog" id="decider1" data-theme="b" data-title="Diagnostic Guide - Step 1">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 1
+                </span>
+            </h3>
+            <br />
+            <div class="decider">
+                 <fieldset data-role="controlgroup"  data-type="vertical">
+		            <legend class="legend">Is all or part of the root rotted?</legend>
+                     <br />
+		            <a href="#decider-rootrot" data-rel="dialog" data-transition="flip" data-role="button" data-icon="check" data-iconpos="left">Yes <br /><span class="ltgrey">(roots are rotten)</span></a>
+		            <a href="#decider-rootrot-no" data-rel="dialog" data-transition="flip" data-role="button" data-icon="delete" data-iconpos="left">No <br /><span class="ltgrey">(roots are not rotten)</span></a>
+                    <a href="#decider-rootrot-notsure" data-rel="dialog" data-transition="flip" data-role="button" data-icon="alert" data-iconpos="left">Not Sure <br /><span class="ltgrey">(let's try the next step)</span></a>
+                </fieldset>
+            </div>
+               
+            <br /><br />
+            
+            <a href="#determine" data-role="button" data-inline="true" data-rel="back" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider1 -->
+
+
+    <!-- DECIDER rootrot - yes -->
+    <div data-role="dialog" id="decider-rootrot" data-theme="b" data-title="Identify Diseases - Step 2">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 2
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            All or part of the roots are rotted
+                        </li>
+                    </ul>
+                    <hr />
+                    
+                </div>
+                 <fieldset data-role="controlgroup"  data-type="vertical">
+		            <legend class="legend">Color of root rot?</legend>
+                     <br />
+                     <a href="#decider-rootrot-black" data-rel="dialog" data-transition="flip" data-role="button">Most of the root is <br />rotted and black</a>
+		             <a href="#decider-rootrot-brown" data-rel="dialog" data-transition="flip" data-role="button">The root rot area is <br />sunken and brown <br />to reddish brown</a>
+		            
+                    <a href="#decider-rootrot-notsure" data-rel="dialog" data-transition="flip" data-role="button">Not Sure <br />(let's try another step)</a>
+                </fieldset>
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Possible Diseases</div>
+                (continue answering questions to reduce this list)
+                <br />
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#rhizoctonia-solani" data-rel="dialog" data-transition="pop">
+                            <img src="img/rhizoctonia-brown-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Rhizoctonia solani</h3>
+				            <p class="ui-li-desc">A soil borne fungus found throughout all cotton growing areas</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#thielaviopsis-basicola" data-rel="dialog" data-transition="pop">
+                            <img src="img/thielaviopsis-basicola-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Thielaviopsis basicola</h3>
+				            <p class="ui-li-desc">A soil borne fungus that is easily found in soils throughout the state but causes disease only when soils are relatively cold and wet</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - rootrot - yes -->
+
+
+
+    <!-- DECIDER rootrot - no -->
+    <div data-role="dialog" id="decider-rootrot-no" data-theme="b" data-title="Identify Diseases - Step 2">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 2
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Roots are not rotten
+                        </li>
+                    </ul>
+                    
+                    <hr />
+                    
+                </div>
+                 <fieldset data-role="controlgroup"  data-type="vertical">
+		            <legend class="legend">Other markings:</legend>
+                     <br />
+		            <a href="#decider-vascular-browning" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">Is there vascular browning <br />in a diagonal cut of the root/lower stem, <br />lower leaves with yellow/brown <br />areas and plants stunted?</a>
+		            <a href="#decider-root-knot" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">Are plants stunted <br />and do they have small swellings <br />on roots or stubby roots <br />with club like ends?</a>
+                    
+                    <a href="#decider-none" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">No, none of the above <br />symptoms are observed</a>
+                     
+                </fieldset>
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Possible Diseases</div>
+                (continue answering questions to reduce this list)
+                <br />
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">
+                            <img src="img/verticillium-wilt-xylem-discoloration_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Verticillium dahliae</h3>
+				            <p class="ui-li-desc">A soil borne fungus that enters the roots and grows into the vascular system of the plant</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#fusarium-oxysporum" data-rel="dialog" data-transition="pop">
+                            <img src="img/FOV4-vas-discolor-courtesy-UC-Davis_thumb.jpg" class="ui-li-thumb" alt="" />
+				            <h3 class="ui-li-heading">Fusarium oxysporum Race 4</h3>
+				            <p class="ui-li-desc">A soil inhabiting fungus that causes a vascular wilt disease</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#root-knot-nematode" data-rel="dialog" data-transition="pop">
+                            <img src="img/root-knot-nematode-swellings_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Root-knot Nematode</h3>
+				            <p class="ui-li-desc">Meloidogyne incognita, infects cotton and many other plants</p>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - rootrot - no -->
+
+
+     <!-- DECIDER rootrot - not sure -->
+    <div data-role="dialog" id="decider-rootrot-notsure" data-theme="b"  data-title="Identify Diseases - Step 2">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 2
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Not sure if roots are rotten
+                        </li>
+                    </ul>
+                    <hr />
+                    
+                </div>
+                 <fieldset data-role="controlgroup"  data-type="vertical">
+		            <legend class="legend">Other markings:</legend>
+                     <br />
+		            <a href="#decider-vascular-browning" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">Is there vascular browning <br />in a diagonal cut of the root/lower stem, <br />lower leaves with yellow/brown <br />areas and plants stunted?</a>
+		            <a href="#decider-root-knot" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">Are plants stunted <br />and do they have small swellings <br />on roots or stubby roots <br />with club like ends?</a>
+                    
+                    <a href="#decider-none" data-rel="dialog" data-transition="flip" data-role="button" class="wrap">No, none of the above <br />symptoms are observed</a>
+                     
+                </fieldset>
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Possible Diseases</div>
+                (continue answering questions to reduce this list)
+                <br />
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#rhizoctonia-solani" data-rel="dialog" data-transition="pop">
+                            <img src="img/rhizoctonia-brown-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Rhizoctonia solani</h3>
+				            <p class="ui-li-desc">A soil borne fungus found throughout all cotton growing areas</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#thielaviopsis-basicola" data-rel="dialog" data-transition="pop">
+                            <img src="img/thielaviopsis-basicola-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Thielaviopsis basicola</h3>
+				            <p class="ui-li-desc">A soil borne fungus that is easily found in soils throughout the state but causes disease only when soils are relatively cold and wet</p>
+                        </a>
+                    </li>
+                   
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">
+                            <img src="img/verticillium-wilt-xylem-discoloration_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Verticillium dahliae</h3>
+				            <p class="ui-li-desc">A soil borne fungus that enters the roots and grows into the vascular system of the plant</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#fusarium-oxysporum" data-rel="dialog" data-transition="pop">
+                            <img src="img/FOV4-vas-discolor-courtesy-UC-Davis_thumb.jpg" alt="" class="ui-li-thumb"/>
+				            <h3 class="ui-li-heading">Fusarium oxysporum Race 4</h3>
+				            <p class="ui-li-desc">A soil inhabiting fungus that causes a vascular wilt disease</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#root-knot-nematode" data-rel="dialog" data-transition="pop">
+                            <img src="img/root-knot-nematode-swellings_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Root-knot Nematode</h3>
+				            <p class="ui-li-desc">Meloidogyne incognita, infects cotton and many other plants</p>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - rootrot - not sure -->
+
+
+
+
+    <!-- DECIDER rootrot - BLACK -->
+    <div data-role="dialog" id="decider-rootrot-black" data-theme="b" data-title="Identify Diseases - Step 3">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+               Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 3
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                     Progress Summary:
+                    <ul>
+                        <li>
+                            All or part of the roots are rotted
+                        </li>
+                        <li>
+                            Most of the root is rotted and black
+                        </li>
+                    </ul>
+                    
+                </div>
+                 
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Based on your answers the most likely disease is:</div>
+                
+                
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#thielaviopsis-basicola" data-rel="dialog" data-transition="pop">
+                            <img src="img/thielaviopsis-basicola-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Thielaviopsis basicola</h3>
+				            <p class="ui-li-desc">A soil borne fungus that is easily found in soils throughout the state but causes disease only when soils are relatively cold and wet</p>
+                        </a>
+                    </li>
+                     
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - rootrot - BLACK -->
+
+
+    <!-- DECIDER rootrot - BROWN -->
+    <div data-role="dialog" id="decider-rootrot-brown" data-theme="b" data-title="Identify Diseases - Step 3">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 3
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                     Progress Summary:
+                    <ul>
+                        <li>
+                            All or part of the roots are rotted
+                        </li>
+                        <li>
+                            The root rot area is sunken and brown to reddish brown
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Based on your answers the most likely disease is:</div>
+                
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#rhizoctonia-solani" data-rel="dialog" data-transition="pop">
+                            <img src="img/rhizoctonia-brown-root-rot_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Rhizoctonia solani</h3>
+				            <p class="ui-li-desc">A soil borne fungus found throughout all cotton growing areas</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - rootrot - BROWN -->
+
+
+
+    <!-- DECIDER - vascular-browning -->
+    <div data-role="dialog" id="decider-vascular-browning" data-theme="b" data-title="Identify Diseases - Step 3">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 3
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Roots are not rotten
+                        </li>
+                        <li>
+                            Vascular browning in a diagonal cut of the root/lower stem, lower leaves with yellow/brown areas and plants stunted
+                        </li>
+                    </ul>
+                    <hr />
+                </div>
+                 <fieldset data-role="controlgroup"  data-type="vertical">
+		            <legend class="legend">Vascular browning details:</legend>
+                     <br />
+		            <a href="#decider-vascular-brown-flecking" data-rel="dialog" data-transition="flip" data-role="button">Is there brown flecking in the root and stem?</a>
+		            <a href="#decider-vascular-discoloration" data-rel="dialog" data-transition="flip" data-role="button">Is the discoloration in the root continuous and dark brown?</a>
+                    
+                    <a href="#decider-rootrot-no" data-rel="back" data-icon="back" data-role="button">No, none of the above symptoms are observed</a>
+                     
+                </fieldset>
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Possible Diseases</div>
+                (continue answering questions to reduce this list)
+                <br />
+                
+                
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">
+                            <img src="img/verticillium-wilt-xylem-discoloration_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Verticillium dahliae</h3>
+				            <p class="ui-li-desc">A soil borne fungus that enters the roots and grows into the vascular system of the plant</p>
+                        </a>
+                    </li>
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#fusarium-oxysporum" data-rel="dialog" data-transition="pop">
+                            <img src="img/FOV4-vas-discolor-courtesy-UC-Davis_thumb.jpg" class="ui-li-thumb" alt=""/>
+				            <h3 class="ui-li-heading">Fusarium oxysporum Race 4</h3>
+				            <p class="ui-li-desc">A soil inhabiting fungus that causes a vascular wilt disease</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider - vascular-browning -->
+
+
+
+    <!-- DECIDER - decider-vascular-brown-flecking -->
+    <div data-role="dialog" id="decider-vascular-brown-flecking" data-theme="b" data-title="Identify Diseases - Step 4">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 4
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Roots are not rotten
+                        </li>
+                        <li>
+                            Vascular browning in a diagonal cut of the root/lower stem, lower leaves with yellow/brown areas and plants stunted
+                        </li>
+                        <li>
+                            Brown flecking in the root and stem
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Based on your answers the most likely disease is:</div>
+                
+               
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                     
+                     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#verticillium-dahliae" data-rel="dialog" data-transition="pop">
+                            <img src="img/verticillium-wilt-xylem-discoloration_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Verticillium dahliae</h3>
+				            <p class="ui-li-desc">A soil borne fungus that enters the roots and grows into the vascular system of the plant</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider-vascular-brown-flecking -->
+
+
+
+    <!-- DECIDER - decider-vascular-discoloration -->
+    <div data-role="dialog" id="decider-vascular-discoloration" data-theme="b" data-title="Identify Diseases - Step 4">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 4
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Roots are not rotten
+                        </li>
+                        <li>
+                            Vascular browning in a diagonal cut of the root/lower stem, lower leaves with yellow/brown areas and plants stunted
+                        </li>
+                        <li>
+                            Discoloration in the root is continuous and dark brown
+                        </li>
+                    </ul>
+                </div>
+                 
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Based on your answers the most likely disease is:</div>
+                
+                
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#fusarium-oxysporum" data-rel="dialog" data-transition="pop">
+                            <img src="img/FOV4-vas-discolor-courtesy-UC-Davis_thumb.jpg" class="ui-li-thumb" alt=""/>
+				            <h3 class="ui-li-heading">Fusarium oxysporum Race 4</h3>
+				            <p class="ui-li-desc">A soil inhabiting fungus that causes a vascular wilt disease</p>
+                        </a>
+                    </li>
+                   
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider-vascular-discoloration -->
+
+
+     <!-- DECIDER - decider-root-knot -->
+    <div data-role="dialog" id="decider-root-knot" data-theme="b" data-title="Identify Diseases - Step 3">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+               Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Step 3
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Roots are not rotten
+                        </li>
+                        <li>
+                            Plants stunted and with small swellings on roots or stubby roots with club like ends
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                <div class="bold">Based on your answers the most likely disease is:</div>
+                
+                
+
+                <ul data-role="listview" data-inset="true" data-theme="b">
+                   
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">
+                        <a href="#root-knot-nematode" data-rel="dialog" data-transition="pop">
+                            <img src="img/root-knot-nematode-swellings_thumb.jpg" alt="" />
+				            <h3 class="ui-li-heading">Root-knot Nematode</h3>
+				            <p class="ui-li-desc">Meloidogyne incognita, infects cotton and many other plants</p>
+                        </a>
+                    </li>
+                   
+                </ul>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider-root-knot -->
+
+
+
+
+    <!-- DECIDER - decider-none -->
+    <div data-role="dialog" id="decider-none" data-theme="b" data-title="Identify Diseases - Step 4">
+        <div data-role="header" data-id="header" data-position="inline" role="banner">
+		    <h1 class="ui-title">
+                Diagnostic Guide 
+		    </h1>
+	    </div><!-- /header -->
+        <div data-role="content" class="ui-content center">
+            <h3>
+                Identify Cotton Disease <br />
+                at seedling stage to 8-10 nodes:
+                <br />
+                <span class="uared">
+                    Final Step
+                </span>
+            </h3>
+            
+             <br />
+            <div class="decider">
+                <div class="deciderprogress">
+                    Progress Summary:
+                    <ul>
+                        <li>
+                            Symptoms listed are not observed
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <br />
+                <div class="bold">Other problems such as salt, wind/sand, herbicide damage and/or low vigor seed may be the cause of symptoms.</div>
+                <br />
+            </div>
+            <br /><br />
+            <div class="decider-results">
+                
+
+
+                If you have any questions about this guide <br />
+                or what you are observing: 
+                <br />
+                <a href="#contact" data-role="button" data-inline="true">Contact Us</a>
+
+            </div>
+               
+            <br /><br />
+            <a href="#decider1" data-role="button" data-icon="back" data-rel="back" data-inline="true">Back One Step</a>
+            
+            <a href="#determine" data-role="button" data-inline="true" data-theme="a" data-icon="delete">Cancel Wizard</a>
+        </div>
+    </div><!-- /page : decider-none -->
+
+
+<!-- /WIZARD -->
+
+
+<script type="text/javascript">
+    //http://www.jongales.com/blog/2011/01/10/google-analytics-and-jquery-mobile/
+    $('[data-role=page]').live('pageshow', function (event, ui) {
+        try {
+            _gaq.push(['_setAccount', 'UA-38175812-2']);
+
+            hash = location.hash;
+
+            if (hash) {
+                _gaq.push(['_trackPageview', hash.substr(1)]);
+            } else {
+                _gaq.push(['_trackPageview']);
+            }
+        } catch (err) {
+            console.log('Google Analytics Error: ' + err);
+        }
+
+    });
+</script>
+
+</body>
+</html>

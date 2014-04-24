@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Diseases of Early Season Cotton</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="UofA Extension Plant Pathology presents: Differentiating Diseases of Early Season Cotton - Pima and upland ( Gossypium barbadense; G. hirsutum ) in Arizona" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/><!-- target-densitydpi=device-dpi -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="CottonDiseases" />
+
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32px.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48px.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64px.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="favicon-128px.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="favicon-256px.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="favicon-32px.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="48x48" href="favicon-48px.ico" />
+    <link rel="shortcut icon" type="image/x-icon" sizes="128x128" href="favicon-128px.ico" />
+
+    <!--<link rel="apple-touch-icon-precomposed" href="img/CALS_app_icon.png"/>-->
+    <link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone-retina.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="touch-icon-ipad-retina.png" />
+    <link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image.png" />
+    <!--<link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image-retina.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" />-->
+
+
+    <meta name="google-site-verification" content="lZURZJ2wmsss1LMkzBF09WjEdZ9fsPndWcyl3uD7dm0" />
+    <!--<script src="http://debug.phonegap.com/target/target-script-min.js#calsappdev"></script>-->
+    <script>
+        
+        window.dotsGoingUp = true;
+        var dots = window.setInterval(function () {
+            var wait = document.getElementById("wait");
+            if (window.dotsGoingUp)
+                wait.innerHTML += ".";
+            else {
+                wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
+                if (wait.innerHTML === "")
+                    window.dotsGoingUp = true;
+            }
+            if (wait.innerHTML.length > 2)
+                window.dotsGoingUp = false;
+        }, 400);
+
+       window.location = './main.html';
+    </script>
+    <style>
+        body {margin: 0;font-family: Verdana, Geneva, sans-serif;}
+        .center { text-align:center; }
+        img.startup { 
+            width: 100%;
+            max-width:720px; 
+            /*max-height: 960px;*/
+        }
+        #floating {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            text-align:center;
+        }
+        #loading {
+           
+           width: 320px;
+            margin: 0 auto;
+            padding-left: 50px;
+            text-align:left;
+            color: #ffffff;
+            font-size: 2em;
+            font-family: Verdana, Geneva, sans-serif;
+            text-shadow: 2px 2px 2px #002147;
+        }
+
+        @media screen and (min-width: 280px) {
+            #loading {
+                padding-left: 60px;
+            }
+            #floating {
+                top: 85px;
+            }
+        }
+
+        @media screen and (min-width: 320px) {
+            #loading {
+                padding-left: 80px;
+            }
+            #floating {
+                top: 110px;
+            }
+        }
+
+        @media screen and (min-width: 420px) {
+            #loading {
+                padding-left: 80px;
+                font-size: 3em;
+            }
+            #floating {
+                top: 130px;
+            }
+        }
+
+        @media screen and (min-width: 500px) {
+            #loading {
+                 padding-left: 80px;
+                font-size: 4em;
+            }
+            #floating {
+                top: 150px;
+            }
+        }
+
+        @media screen and (min-width: 700px) {
+            #loading {
+                 padding-left: 0;
+                font-size: 5em;
+            }
+            #floating {
+                top: 192px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div id="floating">
+            <div id="loading">
+                Loading<span id="wait"></span>
+            </div>
+        </div>
+        <img class="startup" src="img/cottondisesases-startup-image.jpg" alt="" />
+        <p><br />
+                If you are not automatically redirected, <a href="main.html" title="Continue to the App">continue to the main page</a>.
+        </p>
+        
+    </div>
+</body>
+</html>
