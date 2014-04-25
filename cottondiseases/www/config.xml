@@ -47,6 +47,8 @@
     <gap:splash gap:platform="ios" height="960" src="res/screen/ios/screen-iphone-portrait-2x.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
+    <gap:splash src="res/screen/ios/screen-iphone5-portrait.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="res/screen/ios/screen-iphone5-landscape.png" gap:platform="ios" width="1136" height="640" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="http://127.0.0.1*" />
 </widget>
