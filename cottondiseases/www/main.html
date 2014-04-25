@@ -1,61 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" manifest="webapp.appcache">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
 <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>Diseases of Early Season Cotton</title>
-    <meta charset="utf-8"/>
-    <meta name="description" content="UofA Extension Plant Pathology presents: Differentiating Diseases of Early Season Cotton - Pima and upland ( Gossypium barbadense; G. hirsutum ) in Arizona"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/><!-- target-densitydpi=device-dpi -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="CottonDiseases" />
+    <meta name="description" content="UA Extension Plant Pathology presents: Differentiating Diseases of Early Season Cotton - Pima and upland ( Gossypium barbadense; G. hirsutum ) in Arizona"/>
     
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32px.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48px.png" />
-    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64px.png" />
-    <link rel="icon" type="image/png" sizes="128x128" href="favicon-128px.png" />
-    <link rel="icon" type="image/png" sizes="256x256" href="favicon-256px.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png" />
-    <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="favicon.ico" />
-    <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="favicon-32px.ico" />
-    <link rel="shortcut icon" type="image/x-icon" sizes="48x48" href="favicon-48px.ico" />
-    <link rel="shortcut icon" type="image/x-icon" sizes="128x128" href="favicon-128px.ico" />
-
-    <!--<link rel="apple-touch-icon-precomposed" href="img/CALS_app_icon.png"/>-->
-    <link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone-retina.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="touch-icon-ipad-retina.png" />
-    <link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image.png" />
-    <!--<link rel="apple-touch-startup-image" href="img/cottondisesases-startup-image-retina.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" />-->
-
-	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.2.0.min.css" />
     <link rel="stylesheet" type="text/css" href="css/PlantApp.min.css" />
-    <!--<link rel="stylesheet" type="text/css" href="css/ua-web-branding.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" media="screen" />-->
-    <!--<link rel="stylesheet" type="text/css" href="css/main.css" />-->
     <link rel="stylesheet" type="text/css" href="css/cals-cottonapp-production.css" />
 
-	<script src="lib/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/bookmark_bubble.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-        // google bookmark bubble 
-        page_popup_bubble = "#home";
-
-        /** Don't show the bubble if click dismiss button at 3 times. */
-        google.bookmarkbubble.Bubble.prototype.NUMBER_OF_TIMES_TO_DISMISS = 3;
-        /** page to bookmark bubble (generally, this should be top page) */
-        if (typeof (page_popup_bubble) == "undefined") {
-            page_popup_bubble = "#home";
-        }
-
-        /** bookmark bubble initialized in mobileinit event for jquery mobile, see below */
-        
-        /*
-            When jQuery Mobile starts, it triggers a mobileinit event on the document object. 
-            To override default settings, bind to mobileinit. Because the mobileinit event is triggered immediately, 
-            you'll need to bind your event handler before jQuery Mobile is loaded.
-        */
+ 
         $(document).on('mobileinit', function () {
             $.mobile.loader.prototype.options.text = "loading";
             $.mobile.loader.prototype.options.textVisible = true;
@@ -68,54 +44,12 @@
                // $.mobile.defaultDialogTransition = "none";
             }
 
-            $(document).on('pageinit', page_popup_bubble, function () {
-                //console.log('called pageinit for ' + page_popup_bubble);
-                window.setTimeout(function () {
-                    var bubble = new google.bookmarkbubble.Bubble();
-
-                    var parameter = page_popup_bubble;
-
-                    bubble.hasHashParameter = function () {
-                        return location.hash == "" && location.href.indexOf(parameter) == location.href.length - 1;
-                        //return false;
-                    };
-
-                    bubble.setHashParameter = function () {
-                        if (!this.hasHashParameter()) {
-                            location.href = parameter;
-                        }
-                    };
-
-                    bubble.getViewportHeight = function () {
-                        window.console.log('Example of how to override getViewportHeight.');
-                        return window.innerHeight;
-                    };
-
-                    bubble.getViewportScrollY = function () {
-                        window.console.log('Example of how to override getViewportScrollY.');
-                        return window.pageYOffset;
-                    };
-
-                    bubble.registerScrollHandler = function (handler) {
-                        window.console.log('Example of how to override registerScrollHandler.');
-                        window.addEventListener('scroll', handler, false);
-                    };
-
-                    bubble.deregisterScrollHandler = function (handler) {
-                        window.console.log('Example of how to override deregisterScrollHandler.');
-                        window.removeEventListener('scroll', handler, false);
-                    };
-
-                    bubble.showIfAllowed();
-                }, 1000 /** delay to show the bubble */);
-            });
-
         });
     </script>
-    <!--<script src="lib/jquery-migrate-1.1.0.min.js" type="text/javascript" charset="utf-8"></script>-->
-	<script src="lib/jquery.mobile-1.2.0.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/cals.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="js/jquery-migrate-1.1.0.min.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="js/jquery.mobile-1.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/cals.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
 
