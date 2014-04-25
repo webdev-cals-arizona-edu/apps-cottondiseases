@@ -49,14 +49,13 @@
     <!--<script src="js/jquery-migrate-1.1.0.min.js" type="text/javascript" charset="utf-8"></script>-->
     <script src="js/jquery.mobile-1.2.0.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/cals.js" type="text/javascript" charset="utf-8"></script>
+<!--    <script src="js/cals.js" type="text/javascript" charset="utf-8"></script>-->
+    <script type="text/javascript" src="phonegap.js"></script>
 
     <script type="text/javascript">
 
-       
-       
         $(document).ready(function () {
-            $('.copyrightyear').text(new Date().getFullYear());
+            $('.copyrightyear').text('2013-'+new Date().getFullYear());
         });
 
         function alertCameraNotAvailable() {
