@@ -173,6 +173,14 @@
             // The scope of 'this' is the event. In order to call the 'receivedEvent'
             // function, we must explicity call 'app.receivedEvent(...);'
             onDeviceReady: function() {
+                
+                //init GA Plugin
+                var gaPlugin;
+                gaPlugin = window.plugins.gaPlugin;
+                gaPlugin.init(gsSuccessHandler, gaErrorHandler, "UA-38175812-1", 10);
+                // usage: https://github.com/phonegap-build/GAPlugin/blob/340201342d7f33b3838f7d280b5cfc98aef4344d/README.md
+                // example: https://github.com/phonegap-build/GAPlugin/blob/master/Example/index.html
+                
                 app.receivedEvent('deviceready');
             },
             // Update DOM on a Received Event
@@ -190,6 +198,13 @@
                 },1000);
             }
         };
+        
+        function gsSuccessHandler () {
+            
+        }
+        function gaErrorHandler () {
+            
+        }
     </script>
 </head>
 <body>
