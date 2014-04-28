@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.arizona.cals.cottondiseases" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:gap="http://phonegap.com/ns/1.0"
+        id="edu.arizona.cals.cottondiseases" 
+        version="1.0.0" >
     <name>CottonDiseases</name>
     <description>
         Differentiating Diseases of Early Season Cotton 
@@ -8,12 +11,17 @@
     <author email="webdev@cals.arizona.edu" href="https://cct.cals.arizona.edu/units/web/">
         UA CALS CCT Web Dev
     </author>
+    
     <feature name="http://api.phonegap.com/1.0/device" />
+    
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
-    <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="disallowOverscroll" value="true" />
+    
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
@@ -24,6 +32,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
+<!--    <preference name="BackgroundColor" value="0xfffcfff5" />-->
+    
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
     <icon gap:density="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
@@ -50,5 +60,6 @@
     <gap:splash src="res/screen/ios/screen-iphone5-portrait.png" gap:platform="ios" width="640" height="1136" />
     <gap:splash src="res/screen/ios/screen-iphone5-landscape.png" gap:platform="ios" width="1136" height="640" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    
     <access origin="http://127.0.0.1*" />
 </widget>
