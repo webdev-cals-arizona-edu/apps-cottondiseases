@@ -21,7 +21,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi" /><!--remove to disable overscroll: height=device-height, -->
     <title>Diseases of Early Season Cotton</title>
     <meta name="description" content="UA Extension Plant Pathology presents: Differentiating Diseases of Early Season Cotton - Pima and upland ( Gossypium barbadense; G. hirsutum ) in Arizona"/>
     
@@ -75,6 +75,9 @@
             // The scope of 'this' is the event. In order to call the 'receivedEvent'
             // function, we must explicity call 'app.receivedEvent(...);'
             onDeviceReady: function() {
+                if (bDev){
+                    alert('onDeviceReady...');
+                }
                 // try to init Google Analytics
                 gaPlugin = window.plugins.gaPlugin;
                 // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
@@ -84,7 +87,9 @@
             },
             // Update DOM on a Received Event
             receivedEvent: function(id) {
-                
+                if (bDev){
+                    alert('deviceReady!');
+                }
                 var parentElement = document.getElementById(id);
                 var listeningElement = parentElement.querySelector('.listening');
                 var receivedElement = parentElement.querySelector('.received');
@@ -93,6 +98,13 @@
                 receivedElement.setAttribute('style', 'display:block;');
 
                 //console.log('Received Event: ' + id);
+                
+                // iOS7 hide statusBarOverlay if it's visible
+                window.plugin.statusbarOverlay.isVisible( function (isVisible) {
+                    window.plugin.statusbarOverlay.hide();
+                });
+                
+                // appReady();
             }
         };
         
@@ -105,6 +117,8 @@
             
             // usage: https://github.com/phonegap-build/GAPlugin/blob/340201342d7f33b3838f7d280b5cfc98aef4344d/README.md
             // example: https://github.com/phonegap-build/GAPlugin/blob/master/Example/index.html
+            
+            return;
         }
         
         function gaInitSuccessHandler (result) {
