@@ -301,3 +301,70 @@ div.pp_default .pp_nav .currentTextHolder {left: 40px;}
 .ui-grid-b > :nth-child(n) {
     margin-right: -1px;
 }
+
+/* LOADING */
+
+#loading img.startup { width: 100%;max-width:720px; }/*max-width:320px; max-height: 460px; // max-width:720px; max-height: 960px;*/
+#loading #floating { position: absolute;top: 50px;width: 100%;text-align:center; }/*margin-top:5px;*/
+#loading #loadingtext { width: 190px; margin: 0 auto;text-align:left;color: #ffffff;font-size: 2em;font-family: Verdana, Geneva, sans-serif;text-shadow: 2px 2px 2px #002147;}
+
+@media screen and (min-width: 280px) {
+    #loading #loadingtext { padding-left: 60px; }
+    #loading #floating { top: 85px; }
+}
+
+@media screen and (min-width: 320px) {
+    #loading #loadingtext { padding-left: 80px; }
+    #loading #floating { top: 110px; } 
+}
+
+@media screen and (min-width: 420px) {
+    #loading #loadingtext { padding-left: 80px; font-size: 3em; }
+    #loading #floating { top: 130px; }
+}
+
+@media screen and (min-width: 500px) {
+    #loading #loadingtext { padding-left: 80px; font-size: 4em; }
+    #loading #floating { top: 150px; }
+}
+
+@media screen and (min-width: 700px) {
+    #loading #loadingtext { padding-left: 0; font-size: 5em; }
+    #loading #floating { top: 192px; }
+}
+        
+#loading .event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+#loading .event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+#loading .event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
